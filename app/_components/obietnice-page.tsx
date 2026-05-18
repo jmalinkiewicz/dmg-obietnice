@@ -3,6 +3,7 @@ import { PlusCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Obietnica } from "@/lib/definitions";
 import { ObietniceList } from "./obietnice-list";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 type ObietnicePageProps = {
   obietnice: Obietnica[];
@@ -26,20 +27,25 @@ function ObietnicePageHeader() {
         <Badge variant="outline" className="w-fit">
           DMG
         </Badge>
-        <Link
-          href="/zglos"
-          className="inline-flex h-9 w-fit items-center justify-center gap-1.5 rounded-lg bg-primary px-2.5 text-sm font-medium whitespace-nowrap text-primary-foreground transition-all hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
-        >
-          <PlusCircle aria-hidden="true" className="size-4" />
-          Zgłoś klip
-        </Link>
       </div>
       <div className="flex flex-col gap-2">
-        <h1 className="text-4xl font-semibold tracking-normal text-foreground sm:text-5xl">
-          Lista obietnic
-        </h1>
+        <div className="flex justify-between items-baseline">
+          <h1 className="text-4xl font-semibold tracking-normal text-foreground sm:text-5xl">
+            Lista obietnic
+          </h1>
+          <Link
+            className={
+              buttonVariants({ variant: "default", size: "lg" }) +
+              " rounded-full!"
+            }
+            href="/zglos"
+          >
+            <PlusCircle aria-hidden="true" className="size-4" />
+            Zgłoś klip
+          </Link>
+        </div>
         <p className="max-w-2xl text-base leading-7 text-muted-foreground">
-          Publiczny przegląd obietnic zapisanych w rejestrze scamu.
+          Publiczna przeglądarka obietnic zapisanych w rejestrze scamu.
         </p>
       </div>
     </header>
