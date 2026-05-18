@@ -36,9 +36,7 @@ export function ObietnicaCard({ obietnica }: ObietnicaCardProps) {
             ) : null}
           </div>
 
-          <div className="flex flex-wrap gap-2 sm:justify-end">
-            <ObietnicaStatusBadge status={obietnica.status} />
-          </div>
+          <ObietnicaStatusBadge status={obietnica.status} />
         </div>
       </CardHeader>
 
@@ -85,9 +83,20 @@ function ObietnicaStatusBadge({ status }: { status: ObietnicaStatus }) {
   );
 }
 
+function ObietnicaTagBadge({ tag }: { tag: string }) {
+  return (
+    <Badge
+      variant="outline"
+      className="border-border/60 bg-muted/30 text-muted-foreground"
+    >
+      {tag}
+    </Badge>
+  );
+}
+
 function ObietnicaDetails({ obietnica }: ObietnicaCardProps) {
   return (
-    <CardContent className="flex flex-col gap-3 text-sm text-muted-foreground">
+    <CardContent className="flex gap-3 text-sm text-muted-foreground">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         {obietnica.datePromised ? (
           <DateMetadata label="Obiecana" dateTime={obietnica.datePromised} />
@@ -97,9 +106,11 @@ function ObietnicaDetails({ obietnica }: ObietnicaCardProps) {
         ) : null}
         {obietnica.url ? <SourceLink url={obietnica.url} /> : null}
       </div>
-      {obietnica.notes ? (
-        <p className="leading-6 text-foreground">{obietnica.notes}</p>
-      ) : null}
+      <div className="flex gap-2">
+        {obietnica.tags.map((tag) => (
+          <ObietnicaTagBadge key={tag} tag={tag} />
+        ))}
+      </div>
     </CardContent>
   );
 }
