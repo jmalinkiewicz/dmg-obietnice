@@ -4,6 +4,7 @@ import type { TurnstileInstance } from "@marsidev/react-turnstile";
 import { useActionState, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { Send } from "lucide-react";
+import { toast } from "sonner";
 import {
   submitZglos,
   type ZglosFormState,
@@ -35,6 +36,26 @@ export function ZglosForm({ turnstileEnabled = true }: ZglosFormProps) {
   const formKey = state?.success ? "success" : "default";
   const formRef = useRef<HTMLFormElement>(null);
   const turnstileRef = useRef<TurnstileInstance>(null);
+  const lastNotifiedState = useRef<ZglosFormState>(null);
+
+  useEffect(() => {
+    if (!state || state === lastNotifiedState.current) {
+      return;
+    }
+
+    lastNotifiedState.current = state;
+
+    if (state.success) {
+      toast.success(state.message, { id: "zglos-form" });
+      return;
+    }
+
+    if (state.fieldErrors) {
+      return;
+    }
+
+    toast.error(state.message, { id: "zglos-form" });
+  }, [state]);
 
   useEffect(() => {
     if (!turnstileEnabled) {
@@ -126,25 +147,6 @@ export function ZglosForm({ turnstileEnabled = true }: ZglosFormProps) {
             />
           ) : null}
 
-          {state?.captchaError || state?.rateLimitError ? (
-            <p className="text-sm text-destructive">{state.message}</p>
-          ) : null}
-
-          {state &&
-          !state.captchaError &&
-          !state.rateLimitError &&
-          !state.fieldErrors ? (
-            <p
-              className={
-                state.success
-                  ? "rounded-lg border border-border bg-muted/30 px-3 py-2 text-sm text-foreground"
-                  : "text-sm text-destructive"
-              }
-              aria-live="polite"
-            >
-              {state.message}
-            </p>
-          ) : null}
         </CardContent>
 
         <CardFooter className="mt-4 justify-end">

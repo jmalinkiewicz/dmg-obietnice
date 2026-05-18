@@ -4,10 +4,7 @@ import {
   parseZglosFormData,
   zglosFieldErrors,
 } from "@/app/_components/zglos-form/schema";
-import {
-  consumeRateLimit,
-  formatRetryAfter,
-} from "@/lib/rate-limit";
+import { consumeRateLimit, formatRetryAfter } from "@/lib/rate-limit";
 import { getRequestIp } from "@/lib/request-ip";
 import { isTurnstileEnabled } from "@/lib/turnstile-config";
 import { verifyTurnstileToken } from "@/lib/turnstile";
@@ -86,6 +83,6 @@ export async function submitZglos(
 
   return {
     success: true,
-    message: "Dzięki, zgłoszenie jest gotowe do obsługi.",
+    message: "Dzięki, zgłoszenie zostanie rozpatrzone.",
   };
 }
