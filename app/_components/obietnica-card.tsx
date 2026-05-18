@@ -49,7 +49,14 @@ export function ObietnicaCard({ obietnica }: ObietnicaCardProps) {
 
 function ObietnicaStatusBadge({ fulfilled }: { fulfilled: boolean }) {
   return (
-    <Badge variant={fulfilled ? "secondary" : "outline"}>
+    <Badge
+      variant={fulfilled ? "secondary" : "outline"}
+      className={
+        fulfilled
+          ? "border-green-200 bg-green-100 text-green-800 hover:bg-green-100 dark:border-green-900/50 dark:bg-green-950/50 dark:text-green-300"
+          : undefined
+      }
+    >
       {fulfilled ? "Spełniona" : "Niespełniona"}
     </Badge>
   );
@@ -60,10 +67,7 @@ function ObietnicaDetails({ obietnica }: ObietnicaCardProps) {
     <CardContent className="flex flex-col gap-3 text-sm text-muted-foreground">
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
         {obietnica.datePromised ? (
-          <DateMetadata
-            label="Obiecana"
-            dateTime={obietnica.datePromised}
-          />
+          <DateMetadata label="Obiecana" dateTime={obietnica.datePromised} />
         ) : null}
         {obietnica.dateDue ? (
           <DateMetadata label="Termin" dateTime={obietnica.dateDue} />
