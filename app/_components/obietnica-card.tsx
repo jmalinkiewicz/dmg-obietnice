@@ -50,8 +50,7 @@ export function ObietnicaCard({ obietnica }: ObietnicaCardProps) {
 const statusConfig = {
   promised: {
     label: "Obiecana",
-    className:
-      "border-sky-200 bg-sky-100 text-sky-800 hover:bg-sky-100 dark:border-sky-900/50 dark:bg-sky-950/50 dark:text-sky-300",
+    className: "",
   },
   partially_fulfilled: {
     label: "Częściowo spełniona",
