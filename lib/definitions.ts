@@ -17,9 +17,15 @@ export type ObietnicaDocument = {
   url?: string | null;
   datePromised?: Date | string | null;
   dateDue?: Date | string | null;
-  fulfilled?: boolean | null;
+  status?: ObietnicaStatus | null;
   notes?: string | null;
 };
+
+export type ObietnicaStatus =
+  | "promised"
+  | "partially_fulfilled"
+  | "fulfilled"
+  | "unfulfilled";
 
 export type Obietnica = {
   id: string;
@@ -28,7 +34,7 @@ export type Obietnica = {
   url?: string;
   datePromised?: string;
   dateDue?: string;
-  fulfilled: boolean;
+  status: ObietnicaStatus;
   notes?: string;
 };
 
