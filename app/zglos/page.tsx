@@ -5,8 +5,8 @@ import { ZglosForm } from "@/app/_components/zglos-form/zglos-form";
 import { isTurnstileEnabled } from "@/lib/turnstile-config";
 
 export const metadata: Metadata = {
-  title: "Zgłoś klip | Lista obietnic",
-  description: "Prosty formularz do zgłaszania klipów z obietnicami DMG.",
+  title: "Zgłoś obietnicę | Lista obietnic",
+  description: "Formularz do zgłaszania obietnic DMG.",
 };
 
 export default function ZglosPage() {
@@ -19,7 +19,7 @@ export default function ZglosPage() {
           </Badge>
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl font-semibold tracking-normal text-foreground sm:text-5xl">
-              Zgłoś klip
+              Zgłoś obietnicę
             </h1>
             <p className="max-w-2xl text-base leading-7 text-muted-foreground">
               Wklej adres klipu i dopisz krótki opis obietnicy, którą warto

@@ -41,7 +41,7 @@ function ObietnicePageHeader() {
             href="/zglos"
           >
             <PlusCircle aria-hidden="true" className="size-4" />
-            Zgłoś klip
+            Zgłoś obietnicę
           </Link>
         </div>
         <p className="max-w-2xl text-base leading-7 text-muted-foreground">

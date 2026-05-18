@@ -2,10 +2,20 @@ import "server-only";
 
 import { unstable_cache } from "next/cache";
 
-import type { Obietnica, ObietnicaDocument } from "@/lib/definitions";
+import type {
+  Obietnica,
+  ObietnicaDocument,
+  ObietnicaStatus,
+} from "@/lib/definitions";
 import { getMongoDb } from "@/lib/mongodb";
 
 const REVALIDATE_SECONDS = Number(process.env.REVALIDATE_SECONDS ?? 300);
+const OBIETNICA_STATUSES = [
+  "promised",
+  "partially_fulfilled",
+  "fulfilled",
+  "unfulfilled",
+] as const satisfies readonly ObietnicaStatus[];
 
 const projection = {
   title: 1,
@@ -13,7 +23,7 @@ const projection = {
   url: 1,
   datePromised: 1,
   dateDue: 1,
-  fulfilled: 1,
+  status: 1,
   notes: 1,
 };
 
@@ -31,6 +41,10 @@ function formatDate(value?: Date | string | null) {
   return date.toISOString();
 }
 
+function normalizeStatus(status?: ObietnicaStatus | null): ObietnicaStatus {
+  return status && OBIETNICA_STATUSES.includes(status) ? status : "promised";
+}
+
 function normalizeObietnica(document: ObietnicaDocument): Obietnica {
   return {
     id: document._id.toString(),
@@ -39,7 +53,7 @@ function normalizeObietnica(document: ObietnicaDocument): Obietnica {
     url: document.url ?? undefined,
     datePromised: formatDate(document.datePromised),
     dateDue: formatDate(document.dateDue),
-    fulfilled: document.fulfilled ?? false,
+    status: normalizeStatus(document.status),
     notes: document.notes ?? undefined,
   };
 }

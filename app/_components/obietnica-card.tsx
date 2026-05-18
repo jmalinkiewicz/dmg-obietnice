@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { Obietnica } from "@/lib/definitions";
+import type { Obietnica, ObietnicaStatus } from "@/lib/definitions";
 
 const dateFormatter = new Intl.DateTimeFormat("pl-PL", {
   day: "numeric",
@@ -37,7 +37,7 @@ export function ObietnicaCard({ obietnica }: ObietnicaCardProps) {
           </div>
 
           <div className="flex flex-wrap gap-2 sm:justify-end">
-            <ObietnicaStatusBadge fulfilled={obietnica.fulfilled} />
+            <ObietnicaStatusBadge status={obietnica.status} />
           </div>
         </div>
       </CardHeader>
@@ -47,17 +47,40 @@ export function ObietnicaCard({ obietnica }: ObietnicaCardProps) {
   );
 }
 
-function ObietnicaStatusBadge({ fulfilled }: { fulfilled: boolean }) {
+const statusConfig = {
+  promised: {
+    label: "Obiecana",
+    className: "",
+  },
+  partially_fulfilled: {
+    label: "Częściowo spełniona",
+    className:
+      "border-amber-200 bg-amber-100 text-amber-800 hover:bg-amber-100 dark:border-amber-900/50 dark:bg-amber-950/50 dark:text-amber-300",
+  },
+  fulfilled: {
+    label: "Spełniona",
+    className:
+      "border-green-200 bg-green-100 text-green-800 hover:bg-green-100 dark:border-green-900/50 dark:bg-green-950/50 dark:text-green-300",
+  },
+  unfulfilled: {
+    label: "Niespełniona",
+    className:
+      "border-red-200 bg-red-100 text-red-800 hover:bg-red-100 dark:border-red-900/50 dark:bg-red-950/50 dark:text-red-300",
+  },
+} satisfies Record<
+  ObietnicaStatus,
+  {
+    label: string;
+    className: string;
+  }
+>;
+
+function ObietnicaStatusBadge({ status }: { status: ObietnicaStatus }) {
+  const config = statusConfig[status];
+
   return (
-    <Badge
-      variant={fulfilled ? "secondary" : "outline"}
-      className={
-        fulfilled
-          ? "border-green-200 bg-green-100 text-green-800 hover:bg-green-100 dark:border-green-900/50 dark:bg-green-950/50 dark:text-green-300"
-          : undefined
-      }
-    >
-      {fulfilled ? "Spełniona" : "Niespełniona"}
+    <Badge variant="outline" className={config.className}>
+      {config.label}
     </Badge>
   );
 }
