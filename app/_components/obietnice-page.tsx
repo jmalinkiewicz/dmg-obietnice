@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { PlusCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import type { Obietnica } from "@/lib/definitions";
 import { ObietniceList } from "./obietnice-list";
@@ -20,9 +22,18 @@ export function ObietnicePage({ obietnice }: ObietnicePageProps) {
 function ObietnicePageHeader() {
   return (
     <header className="flex flex-col gap-3">
-      <Badge variant="outline" className="w-fit">
-        DMG
-      </Badge>
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <Badge variant="outline" className="w-fit">
+          DMG
+        </Badge>
+        <Link
+          href="/zglos"
+          className="inline-flex h-9 w-fit items-center justify-center gap-1.5 rounded-lg bg-primary px-2.5 text-sm font-medium whitespace-nowrap text-primary-foreground transition-all hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+        >
+          <PlusCircle aria-hidden="true" className="size-4" />
+          Zgłoś klip
+        </Link>
+      </div>
       <div className="flex flex-col gap-2">
         <h1 className="text-4xl font-semibold tracking-normal text-foreground sm:text-5xl">
           Lista obietnic
