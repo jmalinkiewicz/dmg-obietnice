@@ -45,12 +45,6 @@ function ObietnicePageHeader() {
           >
             github
           </Link>
-          <span
-            aria-disabled="true"
-            className="cursor-not-allowed text-muted-foreground/50"
-          >
-            API
-          </span>
         </nav>
       </div>
       <div className="flex flex-col gap-2">
