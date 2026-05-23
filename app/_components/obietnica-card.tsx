@@ -32,7 +32,7 @@ export function ObietnicaCard({ obietnica }: ObietnicaCardProps) {
     obietnica.notes;
 
   return (
-    <Card>
+    <Card className="ring-0 ring-transparent gradient-border gradient-border-to-tl gradient-border-from-neutral-800 gradient-border-via-neutral-900 gradient-border-to-neutral-800">
       <CardHeader>
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex min-w-0 flex-col gap-2">
