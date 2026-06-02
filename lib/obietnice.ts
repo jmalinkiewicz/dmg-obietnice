@@ -19,6 +19,7 @@ const OBIETNICA_STATUSES = [
   "promised",
   "partially_fulfilled",
   "fulfilled",
+  "fulfilled_late",
   "unfulfilled",
 ] as const satisfies readonly ObietnicaStatus[];
 

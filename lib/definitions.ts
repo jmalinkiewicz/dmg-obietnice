@@ -49,6 +49,7 @@ export type ObietnicaStatus =
   | "promised"
   | "partially_fulfilled"
   | "fulfilled"
+  | "fulfilled_late"
   | "unfulfilled";
 
 export type Obietnica = {

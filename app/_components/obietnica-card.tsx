@@ -64,6 +64,11 @@ const statusConfig = {
     className:
       "border-green-200 bg-green-100 text-green-800 hover:bg-green-100 dark:border-green-900/50 dark:bg-green-950/50 dark:text-green-300",
   },
+  fulfilled_late: {
+    label: "Spełniona po terminie",
+    className:
+      "border-orange-200 bg-orange-100 text-orange-800 hover:bg-orange-100 dark:border-orange-900/50 dark:bg-orange-950/50 dark:text-orange-300",
+  },
   unfulfilled: {
     label: "Niespełniona",
     className:

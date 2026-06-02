@@ -28,6 +28,12 @@ export const statusOptions: Array<{
     dotClassName: "bg-green-600 dark:bg-green-400",
   },
   {
+    value: "fulfilled_late",
+    label: "Spełniona po terminie",
+    indicatorClassName: "bg-orange-100 dark:bg-orange-950/60",
+    dotClassName: "bg-orange-600 dark:bg-orange-400",
+  },
+  {
     value: "unfulfilled",
     label: "Niespełniona",
     indicatorClassName: "bg-red-100 dark:bg-red-950/60",
