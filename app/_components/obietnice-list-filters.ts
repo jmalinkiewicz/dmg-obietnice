@@ -35,7 +35,7 @@ export const statusOptions: Array<{
   },
   {
     value: "partially_fulfilled",
-    label: "Częściowo spełniona",
+    label: "Częściowo zrealizowana",
     indicatorClassName: "bg-amber-100 dark:bg-amber-950/60",
     dotClassName: "bg-amber-600 dark:bg-amber-400",
   },

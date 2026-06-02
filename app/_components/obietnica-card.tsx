@@ -55,7 +55,7 @@ const statusConfig = {
     className: "",
   },
   partially_fulfilled: {
-    label: "Częściowo spełniona",
+    label: "Częściowo zrealizowana",
     className:
       "border-amber-200 bg-amber-100 text-amber-800 hover:bg-amber-100 dark:border-amber-900/50 dark:bg-amber-950/50 dark:text-amber-300",
   },
